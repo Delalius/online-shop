@@ -70,20 +70,6 @@ src/shared/data/perfumes.ts
 
 The API facade in `src/shared/api/products.ts` keeps the rest of the app decoupled from the data source, so the local collection can later be replaced with a real backend without rewriting the UI.
 
-## Hero Background
-
-The homepage hero background is imported in:
-
-```text
-src/pages/Home/index.tsx
-```
-
-To change the image, replace the imported asset:
-
-```ts
-import heroBackgroundUrl from "@/assets/hero1.jpg";
-```
-
 ## Repository
 
 GitHub: `https://github.com/Delalius/online-shop`
