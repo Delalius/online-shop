@@ -1,16 +1,18 @@
-# Online Shop
+# Maison Éclat
 
-Интернет-магазин на `React + TypeScript + Vite` с каталогом товаров, фильтрацией, страницей товара, корзиной и оформлением заказа.
+Maison Éclat is a luxury niche perfume boutique built with `React`, `TypeScript`, and `Vite`. The project presents a curated collection of premium fragrances with an editorial homepage, detailed perfume pages, persistent cart, and checkout flow.
 
-## Возможности
+## Features
 
-- каталог товаров с поиском, фильтрацией и сортировкой
-- страница товара с подробной информацией и похожими товарами
-- корзина на `zustand` с сохранением в `localStorage`
-- оформление заказа с валидацией полей
-- адаптивный интерфейс на `Tailwind CSS`
+- Luxury perfume boutique UI with a French-inspired brand direction
+- Product cards with perfume house, collection, rating, accords, concentration, and volume
+- Search and filters by fragrance name, perfume house, family, notes, and accords
+- Product detail pages with fragrance pyramid, mood, benefits, and related fragrances
+- Persistent cart powered by `Zustand` and `localStorage`
+- Checkout flow with delivery, payment, comments, validation, order summary, and success screen
+- Fully responsive layout styled with `Tailwind CSS`
 
-## Стек
+## Tech Stack
 
 - `React`
 - `TypeScript`
@@ -18,34 +20,70 @@
 - `Tailwind CSS`
 - `Zustand`
 - `React Router`
+- `Lucide React`
 
-## Запуск
+## Getting Started
+
+Install dependencies:
 
 ```bash
 npm install
-npm run dev
 ```
 
-## Скрипты
+Start the development server:
 
 ```bash
 npm run dev
+```
+
+Build for production:
+
+```bash
 npm run build
+```
+
+Run lint checks:
+
+```bash
 npm run lint
 ```
 
-## Структура
+## Project Structure
 
 ```text
 src/
   app/         # router and app-level setup
-  entities/    # domain entities
-  features/    # business features, e.g. cart
-  pages/       # page-level screens
-  shared/      # api, types, shared ui
-  widgets/     # reusable page sections
+  entities/    # domain entities such as product cards
+  features/    # business features such as cart state
+  pages/       # home, product, cart, and checkout screens
+  shared/      # data, api facade, types, and shared UI
+  widgets/     # reusable page sections such as filters and header
 ```
 
-## Репозиторий
+## Fragrance Data
+
+The boutique collection is stored locally in:
+
+```text
+src/shared/data/perfumes.ts
+```
+
+The API facade in `src/shared/api/products.ts` keeps the rest of the app decoupled from the data source, so the local collection can later be replaced with a real backend without rewriting the UI.
+
+## Hero Background
+
+The homepage hero background is imported in:
+
+```text
+src/pages/Home/index.tsx
+```
+
+To change the image, replace the imported asset:
+
+```ts
+import heroBackgroundUrl from "@/assets/hero1.jpg";
+```
+
+## Repository
 
 GitHub: `https://github.com/Delalius/online-shop`
