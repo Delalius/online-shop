@@ -48,9 +48,12 @@ export default function ProductPage() {
 
     addToCart({
       id: product.id,
+      brand: product.brand,
       title: product.title,
       price: product.price,
       image: product.image,
+      concentration: product.concentration,
+      volumeMl: product.volumeMl,
     });
   };
 
@@ -66,9 +69,12 @@ export default function ProductPage() {
 
     addToCart({
       id: product.id,
+      brand: product.brand,
       title: product.title,
       price: product.price,
       image: product.image,
+      concentration: product.concentration,
+      volumeMl: product.volumeMl,
     });
   };
 
@@ -84,19 +90,19 @@ export default function ProductPage() {
 
   if (error || !product) {
     return (
-      <ProductErrorState error={error ?? "Не удалось получить данные о товаре."} />
+      <ProductErrorState error={error ?? "Unable to retrieve fragrance details."} />
     );
   }
 
   return (
-    <div className="bg-[radial-gradient(circle_at_top,_rgba(14,165,233,0.14),_transparent_32%),linear-gradient(180deg,#f8fafc_0%,#eef6ff_52%,#f8fafc_100%)] px-4 py-6 sm:px-6 sm:py-10">
+    <div className="bg-[linear-gradient(180deg,#fbf7f2_0%,#ffffff_48%,#eef6f0_100%)] px-4 py-6 sm:px-6 sm:py-10">
       <div className="mx-auto max-w-[1480px]">
         <div className="mb-6 flex flex-wrap items-center gap-2 text-sm text-slate-500">
           <Link to="/" className="transition hover:text-slate-900">
-            Каталог
+            Collection
           </Link>
           <ChevronRight className="h-4 w-4" />
-          <span className="rounded-full bg-white/80 px-3 py-1 text-slate-700 shadow-sm">
+          <span className="rounded-full bg-white/80 px-3 py-1 text-stone-700 shadow-sm">
             {categoryLabel}
           </span>
         </div>
@@ -118,10 +124,9 @@ export default function ProductPage() {
 
         <section className="mt-8 grid items-stretch gap-6 xl:grid-cols-[1fr_0.9fr]">
           <ProductDetails
-            description={product.description}
+            product={product}
             rating={rating}
             reviewCount={reviewCount}
-            category={product.category}
           />
           <RelatedProducts products={relatedProducts} />
         </section>

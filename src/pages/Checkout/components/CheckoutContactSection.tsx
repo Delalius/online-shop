@@ -21,17 +21,17 @@ export const CheckoutContactSection = ({
 }: Props) => {
   return (
     <section className="space-y-4 rounded-[1.75rem] border border-slate-200 bg-slate-50/80 p-5">
-      <h2 className="text-lg font-bold text-slate-950">Контактные данные</h2>
+      <h2 className="text-lg font-bold text-slate-950">Contact details</h2>
       <label className="block">
         <span className="mb-2 block text-sm font-medium text-slate-700">
-          Имя и фамилия
+          Full name
         </span>
         <input
           value={form.fullName}
           onChange={(event) => onChange("fullName", event.target.value)}
           onBlur={() => onBlur("fullName")}
           className={getCheckoutInputClassName(shouldShowError("fullName"))}
-          placeholder="Иван Петров"
+          placeholder="John Parker"
           aria-invalid={shouldShowError("fullName")}
         />
         {shouldShowError("fullName") && (
@@ -43,7 +43,7 @@ export const CheckoutContactSection = ({
 
       <label className="block">
         <span className="mb-2 block text-sm font-medium text-slate-700">
-          Телефон
+          Phone
         </span>
         <input
           value={form.phone}

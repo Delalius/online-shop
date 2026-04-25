@@ -7,11 +7,11 @@ type Props = {
 
 export const RelatedProducts = ({ products }: Props) => {
   return (
-    <div className="flex h-full flex-col rounded-[2rem] border border-white/70 bg-white/90 p-6 shadow-[0_20px_80px_-45px_rgba(15,23,42,0.45)] backdrop-blur">
+    <div className="flex h-full flex-col rounded-[2rem] border border-stone-200 bg-white/90 p-6 shadow-[0_20px_80px_-45px_rgba(28,25,23,0.45)] backdrop-blur">
       <div className="flex items-center justify-between gap-3">
-        <h2 className="text-2xl font-bold text-slate-950">Похожие товары</h2>
-        <Link to="/" className="text-sm font-semibold text-sky-600 hover:text-sky-700">
-          Весь каталог
+        <h2 className="text-2xl font-bold text-stone-950">Related fragrances</h2>
+        <Link to="/" className="text-sm font-semibold text-amber-800 hover:text-stone-950">
+          Full collection
         </Link>
       </div>
 
@@ -21,14 +21,14 @@ export const RelatedProducts = ({ products }: Props) => {
             <Link
               key={item.id}
               to={`/product/${item.id}`}
-              className={`group rounded-[1.5rem] border border-slate-200 bg-slate-50 p-4 transition hover:-translate-y-0.5 hover:border-slate-300 hover:bg-white ${
+              className={`group rounded-[1.5rem] border border-stone-200 bg-stone-50 p-4 transition hover:-translate-y-0.5 hover:border-stone-300 hover:bg-white ${
                 products.length % 2 !== 0 && index === products.length - 1
                   ? "sm:col-span-2"
                   : ""
               }`}
             >
               <div className="flex h-full items-start gap-4">
-                <div className="flex h-24 w-24 flex-shrink-0 items-center justify-center rounded-2xl bg-white p-3 shadow-sm">
+                <div className="flex h-24 w-24 flex-shrink-0 items-center justify-center rounded-2xl bg-white p-2 shadow-sm">
                   <img
                     src={item.image}
                     alt={item.title}
@@ -36,13 +36,13 @@ export const RelatedProducts = ({ products }: Props) => {
                   />
                 </div>
                 <div className="min-w-0">
-                  <p className="line-clamp-2 font-semibold text-slate-900 group-hover:text-sky-700">
+                  <p className="line-clamp-2 font-semibold text-stone-950 group-hover:text-amber-800">
                     {item.title}
                   </p>
-                  <p className="mt-2 text-sm capitalize text-slate-500">
-                    {item.category}
+                  <p className="mt-2 text-sm text-stone-500">
+                    {item.brand} - {item.category}
                   </p>
-                  <p className="mt-3 text-lg font-bold text-slate-950">
+                  <p className="mt-3 text-lg font-bold text-stone-950">
                     ${item.price.toFixed(2)}
                   </p>
                 </div>
@@ -51,9 +51,9 @@ export const RelatedProducts = ({ products }: Props) => {
           ))}
         </div>
       ) : (
-        <div className="mt-5 rounded-[1.5rem] border border-dashed border-slate-200 bg-slate-50 p-6 text-sm text-slate-500">
-          Для этого товара пока нет похожих предложений, но в каталоге уже есть
-          другие интересные позиции.
+        <div className="mt-5 rounded-[1.5rem] border border-dashed border-stone-200 bg-stone-50 p-6 text-sm text-stone-500">
+          There are no related fragrances for this family yet, but the collection
+          includes other expressive compositions.
         </div>
       )}
     </div>

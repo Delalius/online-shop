@@ -3,6 +3,7 @@ import type { Product } from '@/shared/types/product'
 
 export const useFilters = (products: Product[]) => {
   const [search, setSearch] = useState('')
+  const [brand, setBrand] = useState('all')
   const [category, setCategory] = useState('all')
   const [sort, setSort] = useState('default')
 
@@ -10,9 +11,24 @@ export const useFilters = (products: Product[]) => {
     let result = [...products]
 
     if (search) {
+      const normalizedSearch = search.toLowerCase()
+
       result = result.filter(p =>
-        p.title.toLowerCase().includes(search.toLowerCase())
+        [
+          p.title,
+          p.brand,
+          p.collection,
+          p.category,
+          ...p.accords,
+          ...p.notes.top,
+          ...p.notes.heart,
+          ...p.notes.base,
+        ].some((value) => value.toLowerCase().includes(normalizedSearch))
       )
+    }
+
+    if (brand !== 'all') {
+      result = result.filter(p => p.brand === brand)
     }
 
     if (category !== 'all') {
@@ -27,12 +43,22 @@ export const useFilters = (products: Product[]) => {
       result.sort((a, b) => b.price - a.price)
     }
 
+    if (sort === 'rating-desc') {
+      result.sort((a, b) => (b.rating?.rate ?? 0) - (a.rating?.rate ?? 0))
+    }
+
+    if (sort === 'title-asc') {
+      result.sort((a, b) => a.title.localeCompare(b.title))
+    }
+
     return result
-  }, [products, search, category, sort])
+  }, [products, search, brand, category, sort])
 
   return {
     search,
     setSearch,
+    brand,
+    setBrand,
     category,
     setCategory,
     sort,

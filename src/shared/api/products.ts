@@ -1,14 +1,21 @@
-import axios from "axios";
 import type { Product } from "@/shared/types/product";
+import { perfumeProducts } from "@/shared/data/perfumes";
 
-const API_URL = 'https://fakestoreapi.com/products'
+const imitateNetwork = () => new Promise((resolve) => setTimeout(resolve, 250));
 
 export const fetchProducts = async (): Promise<Product[]> => {
-    const {data} = await axios.get<Product[]>(API_URL)
-    return data
-}
+    await imitateNetwork();
+    return perfumeProducts;
+};
 
 export const fetchProductById = async (id: string | number): Promise<Product> => {
-    const {data} = await axios.get<Product>(`${API_URL}/${id}`)
-    return data
-}
+    await imitateNetwork();
+
+    const product = perfumeProducts.find((item) => item.id === Number(id));
+
+    if (!product) {
+        throw new Error("Product not found");
+    }
+
+    return product;
+};

@@ -38,33 +38,33 @@ export const validateCheckoutForm = (form: CheckoutForm): FormErrors => {
   const errors: FormErrors = {};
 
   if (!form.fullName.trim()) {
-    errors.fullName = "Введите имя и фамилию.";
+    errors.fullName = "Enter your full name.";
   } else if (form.fullName.trim().length < 3) {
-    errors.fullName = "Имя должно быть не короче 3 символов.";
+    errors.fullName = "Name must be at least 3 characters.";
   }
 
   if (!form.phone.trim()) {
-    errors.phone = "Введите номер телефона.";
+    errors.phone = "Enter your phone number.";
   } else if (!phonePattern.test(form.phone.trim())) {
-    errors.phone = "Укажите телефон в корректном формате.";
+    errors.phone = "Enter a valid phone number.";
   }
 
   if (!form.email.trim()) {
-    errors.email = "Введите email.";
+    errors.email = "Enter your email.";
   } else if (!emailPattern.test(form.email.trim())) {
-    errors.email = "Укажите email в формате name@example.com.";
+    errors.email = "Use the format name@example.com.";
   }
 
   if (!form.city.trim()) {
-    errors.city = "Укажите город.";
+    errors.city = "Enter your city.";
   } else if (form.city.trim().length < 2) {
-    errors.city = "Название города слишком короткое.";
+    errors.city = "City name is too short.";
   }
 
   if (!form.address.trim()) {
-    errors.address = "Укажите адрес или отделение.";
+    errors.address = "Enter your address or pickup location.";
   } else if (form.address.trim().length < 5) {
-    errors.address = "Добавьте более точный адрес.";
+    errors.address = "Add a more specific address.";
   }
 
   return errors;
@@ -74,5 +74,5 @@ export const getCheckoutInputClassName = (hasError: boolean) =>
   `w-full rounded-xl border bg-white px-4 py-3 outline-none transition ${
     hasError
       ? "border-rose-400 focus:border-rose-500"
-      : "border-slate-200 focus:border-sky-500"
+      : "border-slate-200 focus:border-amber-700"
   }`;

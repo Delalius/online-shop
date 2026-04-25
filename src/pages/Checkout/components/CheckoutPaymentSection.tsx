@@ -9,19 +9,19 @@ type Props = {
 export const CheckoutPaymentSection = ({ paymentMethod, onChange }: Props) => {
   return (
     <section className="space-y-4 rounded-[1.75rem] border border-slate-200 bg-slate-50/80 p-5">
-      <h2 className="text-lg font-bold text-slate-950">Оплата</h2>
+      <h2 className="text-lg font-bold text-slate-950">Payment</h2>
       <div className="grid gap-3 sm:grid-cols-2">
         <button
           type="button"
           onClick={() => onChange("card")}
           className={`rounded-2xl border px-4 py-4 text-left transition ${
             paymentMethod === "card"
-              ? "border-sky-500 bg-sky-50"
+              ? "border-amber-700 bg-amber-50"
               : "border-slate-200 bg-white hover:border-slate-300"
           }`}
         >
-          <CreditCard className="h-5 w-5 text-sky-600" />
-          <p className="mt-3 font-semibold text-slate-900">Картой онлайн</p>
+          <CreditCard className="h-5 w-5 text-amber-800" />
+          <p className="mt-3 font-semibold text-slate-900">Pay online</p>
           <p className="mt-1 text-sm text-slate-500">Visa, Mastercard, Apple Pay</p>
         </button>
 
@@ -30,14 +30,14 @@ export const CheckoutPaymentSection = ({ paymentMethod, onChange }: Props) => {
           onClick={() => onChange("cash")}
           className={`rounded-2xl border px-4 py-4 text-left transition ${
             paymentMethod === "cash"
-              ? "border-sky-500 bg-sky-50"
+              ? "border-amber-700 bg-amber-50"
               : "border-slate-200 bg-white hover:border-slate-300"
           }`}
         >
-          <ShieldCheck className="h-5 w-5 text-sky-600" />
-          <p className="mt-3 font-semibold text-slate-900">При получении</p>
+          <ShieldCheck className="h-5 w-5 text-amber-800" />
+          <p className="mt-3 font-semibold text-slate-900">Pay on delivery</p>
           <p className="mt-1 text-sm text-slate-500">
-            Оплата наличными или картой курьеру
+            Pay by cash or card to the courier
           </p>
         </button>
       </div>

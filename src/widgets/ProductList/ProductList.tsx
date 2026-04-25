@@ -15,6 +15,8 @@ export const ProductList = () => {
   const {
     search,
     setSearch,
+    brand,
+    setBrand,
     category,
     setCategory,
     sort,
@@ -22,12 +24,13 @@ export const ProductList = () => {
     filteredProducts,
   } = useFilters(products);
 
+  const brands = [...new Set(products.map((p) => p.brand))];
   const categories = [...new Set(products.map((p) => p.category))];
 
   useEffect(() => {
     fetchProducts()
       .then(setProducts)
-      .catch(() => setError("Ошибка при загрузки продуктов"))
+      .catch(() => setError("Unable to load fragrances"))
       .finally(() => setLoading(false));
   }, []);
 
@@ -47,20 +50,34 @@ export const ProductList = () => {
 
   return (
     <>
-    <Filters
+      <Filters
         search={search}
         setSearch={setSearch}
+        brand={brand}
+        setBrand={setBrand}
         category={category}
         setCategory={setCategory}
         sort={sort}
         setSort={setSort}
+        brands={brands}
         categories={categories}
+        resultCount={filteredProducts.length}
       />
-    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-      {filteredProducts.map((product) => (
-        <ProductCard key={product.id} product={product} />
-      ))}
-    </div>
+
+      {filteredProducts.length > 0 ? (
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {filteredProducts.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </div>
+      ) : (
+        <div className="rounded-2xl border border-dashed border-stone-300 bg-white/70 p-8 text-center">
+          <p className="text-lg font-semibold text-stone-900">No fragrances found</p>
+          <p className="mt-2 text-sm text-stone-500">
+            Try another brand, fragrance family, or note.
+          </p>
+        </div>
+      )}
     </>
   );
 };

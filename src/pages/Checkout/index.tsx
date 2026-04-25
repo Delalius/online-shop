@@ -80,7 +80,7 @@ export default function CheckoutPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(14,165,233,0.15),_transparent_28%),linear-gradient(180deg,#f8fafc_0%,#eef6ff_55%,#f8fafc_100%)] px-4 py-6 sm:px-6 sm:py-10">
+    <div className="min-h-screen bg-[linear-gradient(180deg,#fbf7f2_0%,#ffffff_52%,#eef6f0_100%)] px-4 py-6 sm:px-6 sm:py-10">
       <div className="mx-auto max-w-[1400px]">
         <div className="mb-6 flex flex-wrap items-center gap-3 text-sm text-slate-500">
           <Link
@@ -88,10 +88,10 @@ export default function CheckoutPage() {
             className="inline-flex items-center gap-2 rounded-full bg-white/85 px-4 py-2 text-slate-700 shadow-sm transition hover:text-slate-950"
           >
             <ArrowLeft className="h-4 w-4" />
-            Назад в корзину
+            Back to cart
           </Link>
-          <span className="rounded-full bg-sky-50 px-4 py-2 font-medium text-sky-700">
-            Оформление заказа
+          <span className="rounded-full bg-amber-50 px-4 py-2 font-medium text-amber-800">
+            Checkout
           </span>
         </div>
 
@@ -103,19 +103,19 @@ export default function CheckoutPage() {
           >
             <div className="flex flex-wrap items-center justify-between gap-4">
               <div>
-                <p className="text-sm uppercase tracking-[0.2em] text-sky-600">
-                  Checkout
+                <p className="text-sm uppercase tracking-[0.2em] text-amber-800">
+                  Boutique checkout
                 </p>
                 <h1 className="mt-2 text-3xl font-bold tracking-tight text-slate-950">
-                  Оформление заказа
+                  Checkout
                 </h1>
                 <p className="mt-3 max-w-2xl text-slate-600">
-                  Заполните контактные данные, выберите способ доставки и
-                  оплаты. Мы сохранили состав корзины справа.
+                  Add your contact details, choose delivery and payment, and
+                  review your selected bottles on the right.
                 </p>
               </div>
               <div className="rounded-[1.5rem] bg-slate-50 px-5 py-4 text-right">
-                <p className="text-sm text-slate-500">Товаров в заказе</p>
+                <p className="text-sm text-slate-500">Bottles in order</p>
                 <p className="mt-1 text-2xl font-bold text-slate-950">{itemsCount}</p>
               </div>
             </div>

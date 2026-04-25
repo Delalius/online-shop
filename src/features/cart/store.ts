@@ -3,10 +3,13 @@ import { persist } from 'zustand/middleware'
 
 export type CartItem = {
   id: number
+  brand?: string
   title: string
   price: number
   quantity: number
   image: string
+  concentration?: string
+  volumeMl?: number
 }
 
 type AddToCartPayload = Omit<CartItem, 'quantity'>
@@ -51,9 +54,12 @@ export const useCartStore = create<CartStore>()(
               ...state.items,
               {
                 id: item.id,
+                brand: item.brand,
                 title: item.title,
                 price: item.price,
                 image: item.image,
+                concentration: item.concentration,
+                volumeMl: item.volumeMl,
                 quantity: 1,
               }
             ]

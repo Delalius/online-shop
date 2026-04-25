@@ -1,45 +1,47 @@
+import type { Product } from "@/shared/types/product";
+
 type Props = {
-  description: string;
+  product: Product;
   rating: number;
   reviewCount: number;
-  category: string;
 };
 
 export const ProductDetails = ({
-  description,
+  product,
   rating,
   reviewCount,
-  category,
 }: Props) => {
   return (
-    <div className="flex h-full flex-col rounded-[2rem] border border-white/70 bg-white/90 p-6 shadow-[0_20px_80px_-45px_rgba(15,23,42,0.45)] backdrop-blur">
-      <h2 className="text-2xl font-bold text-slate-950">Описание и характеристики</h2>
-      <p className="mt-4 max-w-3xl text-base leading-7 text-slate-600">
-        {description}
+    <div className="flex h-full flex-col rounded-[2rem] border border-stone-200 bg-white/90 p-6 shadow-[0_20px_80px_-45px_rgba(28,25,23,0.45)] backdrop-blur">
+      <h2 className="text-2xl font-bold text-stone-950">Fragrance pyramid</h2>
+      <p className="mt-4 max-w-3xl text-base leading-7 text-stone-600">
+        {product.description}
       </p>
 
       <div className="mt-6 grid flex-1 auto-rows-fr gap-3 sm:grid-cols-2">
-        <div className="h-full rounded-2xl border border-slate-200 bg-slate-50 p-4">
-          <p className="text-sm text-slate-500">Материал и уход</p>
-          <p className="mt-1 font-semibold text-slate-900">
-            Рекомендуем бережное использование и хранение в сухом месте.
+        <div className="h-full rounded-2xl border border-stone-200 bg-stone-50 p-4">
+          <p className="text-sm text-stone-500">Top notes</p>
+          <p className="mt-1 font-semibold text-stone-950">
+            {product.notes.top.join(", ")}
           </p>
         </div>
-        <div className="h-full rounded-2xl border border-slate-200 bg-slate-50 p-4">
-          <p className="text-sm text-slate-500">Формат поставки</p>
-          <p className="mt-1 font-semibold text-slate-900">
-            1 товар в упаковке, готов к отправке сразу после заказа.
+        <div className="h-full rounded-2xl border border-stone-200 bg-stone-50 p-4">
+          <p className="text-sm text-stone-500">Heart</p>
+          <p className="mt-1 font-semibold text-stone-950">
+            {product.notes.heart.join(", ")}
           </p>
         </div>
-        <div className="h-full rounded-2xl border border-slate-200 bg-slate-50 p-4">
-          <p className="text-sm text-slate-500">Рейтинг покупателей</p>
-          <p className="mt-1 font-semibold text-slate-900">
-            {rating.toFixed(1)} из 5 на основе {reviewCount} отзывов
+        <div className="h-full rounded-2xl border border-stone-200 bg-stone-50 p-4">
+          <p className="text-sm text-stone-500">Base</p>
+          <p className="mt-1 font-semibold text-stone-950">
+            {product.notes.base.join(", ")}
           </p>
         </div>
-        <div className="h-full rounded-2xl border border-slate-200 bg-slate-50 p-4">
-          <p className="text-sm text-slate-500">Подходит для категории</p>
-          <p className="mt-1 font-semibold capitalize text-slate-900">{category}</p>
+        <div className="h-full rounded-2xl border border-stone-200 bg-stone-50 p-4">
+          <p className="text-sm text-stone-500">Customer rating</p>
+          <p className="mt-1 font-semibold text-stone-950">
+            {rating.toFixed(1)} out of 5 based on {reviewCount} reviews
+          </p>
         </div>
       </div>
     </div>

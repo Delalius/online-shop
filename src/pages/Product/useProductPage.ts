@@ -10,7 +10,7 @@ export const useProductPage = (id?: string) => {
   useEffect(() => {
     const loadProduct = async () => {
       if (!id) {
-        setError("Не удалось определить товар.");
+        setError("Unable to identify the fragrance.");
         return;
       }
 
@@ -31,7 +31,7 @@ export const useProductPage = (id?: string) => {
             .slice(0, 4)
         );
       } catch {
-        setError("Не удалось загрузить информацию о товаре.");
+        setError("Unable to load fragrance details.");
       }
     };
 
