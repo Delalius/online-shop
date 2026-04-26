@@ -80,7 +80,7 @@ export const ProductCard = ({ product }: Props) => {
                 {product.concentration}, {product.volumeMl} ml
               </p>
               <p className="mt-1 text-2xl font-semibold text-stone-950">
-              ${product.price.toFixed(2)}
+                ${product.price.toFixed(2)}
               </p>
             </div>
 

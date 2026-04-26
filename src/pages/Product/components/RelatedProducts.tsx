@@ -1,11 +1,14 @@
+import { Star } from "lucide-react";
 import { Link } from "react-router-dom";
+import type { ProductReview } from "@/pages/Product/model";
 import type { Product } from "@/shared/types/product";
 
 type Props = {
   products: Product[];
+  reviews: ProductReview[];
 };
 
-export const RelatedProducts = ({ products }: Props) => {
+export const RelatedProducts = ({ products, reviews }: Props) => {
   return (
     <div className="flex h-full flex-col rounded-[2rem] border border-stone-200 bg-white/90 p-6 shadow-[0_20px_80px_-45px_rgba(28,25,23,0.45)] backdrop-blur">
       <div className="flex items-center justify-between gap-3">
@@ -16,7 +19,7 @@ export const RelatedProducts = ({ products }: Props) => {
       </div>
 
       {products.length > 0 ? (
-        <div className="mt-5 grid flex-1 auto-rows-fr gap-4 sm:grid-cols-2">
+        <div className="mt-5 grid auto-rows-fr gap-4 sm:grid-cols-2">
           {products.map((item, index) => (
             <Link
               key={item.id}
@@ -56,6 +59,56 @@ export const RelatedProducts = ({ products }: Props) => {
           includes other expressive compositions.
         </div>
       )}
+
+      <div className="mt-6 border-t border-stone-200 pt-6">
+        <div className="flex items-center justify-between gap-3">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-amber-800">
+              Reviews
+            </p>
+            <h3 className="mt-1 text-xl font-bold text-stone-950">
+              What customers notice
+            </h3>
+          </div>
+          <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-amber-50 text-amber-700">
+            <Star className="h-5 w-5 fill-current" />
+          </div>
+        </div>
+
+        <div className="mt-4 grid gap-3">
+          {reviews.map((review) => (
+            <article
+              key={`${review.author}-${review.context}`}
+              className="rounded-[1.25rem] border border-stone-200 bg-stone-50 p-4"
+            >
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <div>
+                  <h4 className="font-semibold text-stone-950">{review.author}</h4>
+                  <p className="text-sm text-stone-500">{review.context}</p>
+                </div>
+                <div
+                  className="flex items-center gap-1 text-amber-500"
+                  aria-label={`${review.rating.toFixed(1)} out of 5 stars`}
+                >
+                  {Array.from({ length: 5 }, (_, starIndex) => (
+                    <Star
+                      key={starIndex}
+                      className={`h-4 w-4 ${
+                        starIndex < Math.round(review.rating)
+                          ? "fill-current"
+                          : "text-stone-300"
+                      }`}
+                    />
+                  ))}
+                </div>
+              </div>
+              <p className="mt-3 text-sm leading-6 text-stone-600">
+                {review.text}
+              </p>
+            </article>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };

@@ -10,6 +10,7 @@ import {
   getProductCategoryLabel,
   getProductCode,
   getProductRating,
+  getProductReviews,
   getProductReviewCount,
   productBenefits,
 } from "@/pages/Product/model";
@@ -32,6 +33,7 @@ export default function ProductPage() {
   const isInCart = Boolean(cartItem);
   const currentQuantity = cartItem?.quantity ?? 0;
   const rating = getProductRating(product);
+  const reviews = getProductReviews(product);
   const reviewCount = getProductReviewCount(product);
   const productCode = getProductCode(product);
   const categoryLabel = getProductCategoryLabel(product);
@@ -128,7 +130,7 @@ export default function ProductPage() {
             rating={rating}
             reviewCount={reviewCount}
           />
-          <RelatedProducts products={relatedProducts} />
+          <RelatedProducts products={relatedProducts} reviews={reviews} />
         </section>
       </div>
     </div>

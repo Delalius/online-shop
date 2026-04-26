@@ -24,14 +24,14 @@ export default function CheckoutPage() {
 
   const [form, setForm] = useState<CheckoutForm>(initialCheckoutForm);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [touched, setTouched] = useState<Partial<Record<CheckoutField, boolean>>>(
-    {}
-  );
+  const [touched, setTouched] = useState<
+    Partial<Record<CheckoutField, boolean>>
+  >({});
   const [showErrors, setShowErrors] = useState(false);
 
   const itemsCount = useMemo(
     () => items.reduce((sum, item) => sum + item.quantity, 0),
-    [items]
+    [items],
   );
   const subtotal = getTotal();
   const deliveryFee = form.deliveryMethod === "courier" ? 7.99 : 0;
@@ -45,7 +45,7 @@ export default function CheckoutPage() {
 
   const handleFieldChange = <K extends CheckoutField>(
     field: K,
-    value: CheckoutForm[K]
+    value: CheckoutForm[K],
   ) => {
     setForm((current) => ({ ...current, [field]: value }));
   };
@@ -65,8 +65,8 @@ export default function CheckoutPage() {
       setTouched(
         requiredCheckoutFields.reduce<Partial<Record<CheckoutField, boolean>>>(
           (acc, field) => ({ ...acc, [field]: true }),
-          {}
-        )
+          {},
+        ),
       );
       return;
     }
@@ -116,7 +116,9 @@ export default function CheckoutPage() {
               </div>
               <div className="rounded-[1.5rem] bg-slate-50 px-5 py-4 text-right">
                 <p className="text-sm text-slate-500">Bottles in order</p>
-                <p className="mt-1 text-2xl font-bold text-slate-950">{itemsCount}</p>
+                <p className="mt-1 text-2xl font-bold text-slate-950">
+                  {itemsCount}
+                </p>
               </div>
             </div>
 

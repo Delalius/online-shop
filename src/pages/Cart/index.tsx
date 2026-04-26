@@ -16,7 +16,9 @@ const Cart = () => {
       <div className="flex min-h-screen items-center justify-center bg-[linear-gradient(180deg,#fbf7f2_0%,#ffffff_52%,#eef6f0_100%)] p-4">
         <div className="text-center">
           <ShoppingCart className="mx-auto mb-4 h-16 w-16 text-stone-300 sm:h-24 sm:w-24" />
-          <h2 className="text-xl text-stone-700 sm:text-2xl">Your cart is empty</h2>
+          <h2 className="text-xl text-stone-700 sm:text-2xl">
+            Your cart is empty
+          </h2>
           <p className="mt-2 text-sm text-stone-500 sm:text-base">
             Add a fragrance from the collection to begin your order.
           </p>
@@ -59,7 +61,11 @@ const Cart = () => {
                   </h3>
                   {(item.brand || item.concentration || item.volumeMl) && (
                     <p className="mb-1 text-sm text-stone-500">
-                      {[item.brand, item.concentration, item.volumeMl ? `${item.volumeMl} ml` : null]
+                      {[
+                        item.brand,
+                        item.concentration,
+                        item.volumeMl ? `${item.volumeMl} ml` : null,
+                      ]
                         .filter(Boolean)
                         .join(" - ")}
                     </p>
@@ -99,7 +105,7 @@ const Cart = () => {
                     <div className="text-right">
                       <p className="text-xs text-stone-500">Subtotal</p>
                       <p className="text-lg font-bold text-stone-900">
-            ${(item.price * item.quantity).toFixed(2)}
+                        ${(item.price * item.quantity).toFixed(2)}
                       </p>
                     </div>
                   </div>
