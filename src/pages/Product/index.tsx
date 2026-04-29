@@ -12,6 +12,7 @@ import {
   getProductRating,
   getProductReviews,
   getProductReviewCount,
+  getProductTypeLabel,
   productBenefits,
 } from "@/pages/Product/model";
 import { useProductPage } from "@/pages/Product/useProductPage";
@@ -37,6 +38,7 @@ export default function ProductPage() {
   const reviewCount = getProductReviewCount(product);
   const productCode = getProductCode(product);
   const categoryLabel = getProductCategoryLabel(product);
+  const productTypeLabel = getProductTypeLabel(product);
 
   const handlePrimaryAction = () => {
     if (!product) {
@@ -50,6 +52,7 @@ export default function ProductPage() {
 
     addToCart({
       id: product.id,
+      productType: product.productType,
       brand: product.brand,
       title: product.title,
       price: product.price,
@@ -71,6 +74,7 @@ export default function ProductPage() {
 
     addToCart({
       id: product.id,
+      productType: product.productType,
       brand: product.brand,
       title: product.title,
       price: product.price,
@@ -92,7 +96,7 @@ export default function ProductPage() {
 
   if (error || !product) {
     return (
-      <ProductErrorState error={error ?? "Unable to retrieve fragrance details."} />
+      <ProductErrorState error={error ?? "Unable to retrieve product details."} />
     );
   }
 
@@ -103,6 +107,10 @@ export default function ProductPage() {
           <Link to="/" className="transition hover:text-slate-900">
             Collection
           </Link>
+          <ChevronRight className="h-4 w-4" />
+          <span className="rounded-full bg-white/80 px-3 py-1 text-stone-700 shadow-sm">
+            {productTypeLabel}
+          </span>
           <ChevronRight className="h-4 w-4" />
           <span className="rounded-full bg-white/80 px-3 py-1 text-stone-700 shadow-sm">
             {categoryLabel}
@@ -122,7 +130,7 @@ export default function ProductPage() {
           onDecrease={handleDecrease}
         />
 
-        <ProductInfoGrid />
+        <ProductInfoGrid product={product} />
 
         <section className="mt-8 grid items-stretch gap-6 xl:grid-cols-[1fr_0.9fr]">
           <ProductDetails
@@ -130,7 +138,11 @@ export default function ProductPage() {
             rating={rating}
             reviewCount={reviewCount}
           />
-          <RelatedProducts products={relatedProducts} reviews={reviews} />
+          <RelatedProducts
+            products={relatedProducts}
+            reviews={reviews}
+            productType={product.productType}
+          />
         </section>
       </div>
     </div>

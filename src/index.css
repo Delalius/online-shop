@@ -1,1 +1,69 @@
 @import "tailwindcss";
+
+@keyframes brandFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(34px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes brandMediaReveal {
+  from {
+    opacity: 0;
+    transform: translateY(42px) scale(0.96);
+    filter: blur(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes brandImageDrift {
+  from {
+    transform: scale(1.04) translate3d(-1.5%, 1.5%, 0);
+  }
+
+  to {
+    transform: scale(1.1) translate3d(1.5%, -1.5%, 0);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .brand-story-section {
+    perspective: 1200px;
+  }
+
+  .brand-story-copy {
+    opacity: 0;
+    animation: brandFadeUp 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    animation-timeline: view(block);
+    animation-range: entry 12% cover 38%;
+  }
+
+  .brand-story-media {
+    opacity: 0;
+    animation: brandMediaReveal 1s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    animation-timeline: view(block);
+    animation-range: entry 18% cover 46%;
+  }
+
+  .brand-story-photo img {
+    animation: brandImageDrift 12s ease-in-out infinite alternate;
+    will-change: transform;
+  }
+
+  .brand-story-note {
+    opacity: 0;
+    animation: brandFadeUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    animation-timeline: view(block);
+    animation-range: entry 28% cover 52%;
+  }
+}

@@ -1,8 +1,10 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import type { ProductType } from "@/shared/types/product";
 
 export type CartItem = {
   id: number;
+  productType?: ProductType;
   brand?: string;
   title: string;
   price: number;
@@ -13,6 +15,8 @@ export type CartItem = {
 };
 
 type AddToCartPayload = Omit<CartItem, "quantity">;
+
+export const MAX_CART_QUANTITY = 99;
 
 type CartStore = {
   items: CartItem[];
@@ -33,7 +37,7 @@ const normalizeQuantity = (quantity: number) => {
     return 1;
   }
 
-  return Math.max(1, Math.floor(quantity));
+  return Math.min(MAX_CART_QUANTITY, Math.max(1, Math.floor(quantity)));
 };
 
 export const useCartStore = create<CartStore>()(
@@ -54,6 +58,7 @@ export const useCartStore = create<CartStore>()(
               ...state.items,
               {
                 id: item.id,
+                productType: item.productType,
                 brand: item.brand,
                 title: item.title,
                 price: item.price,
@@ -69,7 +74,9 @@ export const useCartStore = create<CartStore>()(
       increase: (id) =>
         set((state) => ({
           items: state.items.map((item) =>
-            item.id === id ? { ...item, quantity: item.quantity + 1 } : item,
+            item.id === id
+              ? { ...item, quantity: normalizeQuantity(item.quantity + 1) }
+              : item,
           ),
         })),
 

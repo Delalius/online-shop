@@ -1,26 +1,39 @@
+import type { ProductType } from "@/shared/types/product"
+
 type Props = {
   search: string
   setSearch: (v: string) => void
+  productType: ProductType | 'all'
+  setProductType: (v: ProductType | 'all') => void
   brand: string
   setBrand: (v: string) => void
   category: string
   setCategory: (v: string) => void
   sort: string
   setSort: (v: string) => void
+  productTypes: ProductType[]
   brands: string[]
   categories: string[]
   resultCount: number
 }
 
+const productTypeLabels: Record<ProductType, string> = {
+  perfume: "Perfumes",
+  shampoo: "Shampoos",
+}
+
 export const Filters = ({
   search,
   setSearch,
+  productType,
+  setProductType,
   brand,
   setBrand,
   category,
   setCategory,
   sort,
   setSort,
+  productTypes,
   brands,
   categories,
   resultCount,
@@ -30,16 +43,17 @@ export const Filters = ({
       <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.24em] text-amber-700">
-            Perfume shelf
+            Boutique shelf
           </p>
           <p className="mt-1 text-sm text-stone-500">
-            Fragrances found: {resultCount}
+            Products found: {resultCount}
           </p>
         </div>
         <button
           type="button"
           onClick={() => {
             setSearch("")
+            setProductType("all")
             setBrand("all")
             setCategory("all")
             setSort("default")
@@ -50,13 +64,26 @@ export const Filters = ({
         </button>
       </div>
 
-      <div className="grid gap-3 md:grid-cols-[minmax(220px,1.2fr)_1fr_1fr_1fr]">
+      <div className="grid gap-3 md:grid-cols-[minmax(220px,1.2fr)_1fr_1fr_1fr_1fr]">
         <input
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          placeholder="Search by note, house, or fragrance"
+          placeholder="Search by note, formula, house, or product"
           className="min-h-12 rounded-xl border border-stone-200 bg-stone-50 px-4 text-sm outline-none transition focus:border-amber-700 focus:bg-white"
         />
+
+        <select
+          value={productType}
+          onChange={(e) => setProductType(e.target.value as ProductType | 'all')}
+          className="min-h-12 rounded-xl border border-stone-200 bg-stone-50 px-4 text-sm outline-none transition focus:border-amber-700 focus:bg-white"
+        >
+          <option value="all">All products</option>
+          {productTypes.map(item => (
+            <option key={item} value={item}>
+              {productTypeLabels[item]}
+            </option>
+          ))}
+        </select>
 
         <select
           value={brand}

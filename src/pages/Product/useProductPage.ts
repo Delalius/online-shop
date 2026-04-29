@@ -10,7 +10,7 @@ export const useProductPage = (id?: string) => {
   useEffect(() => {
     const loadProduct = async () => {
       if (!id) {
-        setError("Unable to identify the fragrance.");
+        setError("Unable to identify the product.");
         return;
       }
 
@@ -25,13 +25,13 @@ export const useProductPage = (id?: string) => {
           products
             .filter(
               (item) =>
-                item.category === selectedProduct.category &&
+                item.productType === selectedProduct.productType &&
                 item.id !== selectedProduct.id
             )
             .slice(0, 4)
         );
       } catch {
-        setError("Unable to load fragrance details.");
+        setError("Unable to load product details.");
       }
     };
 

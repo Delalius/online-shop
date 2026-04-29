@@ -21,6 +21,7 @@ export const ProductCard = ({ product }: Props) => {
     } else {
       addToCart({
         id: product.id,
+        productType: product.productType,
         brand: product.brand,
         title: product.title,
         price: product.price,

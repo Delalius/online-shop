@@ -12,7 +12,7 @@ export const ProductErrorState = ({ error }: Props) => {
         <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-rose-50 text-rose-500">
           <SprayCan className="h-6 w-6" />
         </div>
-        <h1 className="text-2xl font-bold text-slate-900">Fragrance unavailable</h1>
+        <h1 className="text-2xl font-bold text-slate-900">Product unavailable</h1>
         <p className="mt-3 text-slate-600">{error}</p>
         <Link
           to="/"

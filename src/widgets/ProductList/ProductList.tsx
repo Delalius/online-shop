@@ -15,6 +15,8 @@ export const ProductList = () => {
   const {
     search,
     setSearch,
+    productType,
+    setProductType,
     brand,
     setBrand,
     category,
@@ -24,13 +26,14 @@ export const ProductList = () => {
     filteredProducts,
   } = useFilters(products);
 
+  const productTypes = [...new Set(products.map((p) => p.productType))];
   const brands = [...new Set(products.map((p) => p.brand))];
   const categories = [...new Set(products.map((p) => p.category))];
 
   useEffect(() => {
     fetchProducts()
       .then(setProducts)
-      .catch(() => setError("Unable to load fragrances"))
+      .catch(() => setError("Unable to load products"))
       .finally(() => setLoading(false));
   }, []);
 
@@ -53,12 +56,15 @@ export const ProductList = () => {
       <Filters
         search={search}
         setSearch={setSearch}
+        productType={productType}
+        setProductType={setProductType}
         brand={brand}
         setBrand={setBrand}
         category={category}
         setCategory={setCategory}
         sort={sort}
         setSort={setSort}
+        productTypes={productTypes}
         brands={brands}
         categories={categories}
         resultCount={filteredProducts.length}
@@ -72,9 +78,9 @@ export const ProductList = () => {
         </div>
       ) : (
         <div className="rounded-2xl border border-dashed border-stone-300 bg-white/70 p-8 text-center">
-          <p className="text-lg font-semibold text-stone-900">No fragrances found</p>
+          <p className="text-lg font-semibold text-stone-900">No products found</p>
           <p className="mt-2 text-sm text-stone-500">
-            Try another brand, fragrance family, or note.
+            Try another brand, product type, family, or note.
           </p>
         </div>
       )}

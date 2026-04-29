@@ -111,11 +111,11 @@ export default function CheckoutPage() {
                 </h1>
                 <p className="mt-3 max-w-2xl text-slate-600">
                   Add your contact details, choose delivery and payment, and
-                  review your selected bottles on the right.
+                  review your selected products on the right.
                 </p>
               </div>
               <div className="rounded-[1.5rem] bg-slate-50 px-5 py-4 text-right">
-                <p className="text-sm text-slate-500">Bottles in order</p>
+                <p className="text-sm text-slate-500">Items in order</p>
                 <p className="mt-1 text-2xl font-bold text-slate-950">
                   {itemsCount}
                 </p>

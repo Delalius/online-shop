@@ -1,5 +1,8 @@
+export type ProductType = "perfume" | "shampoo"
+
 export type Product = {
   id: number
+  productType: ProductType
   brand: string
   title: string
   price: number

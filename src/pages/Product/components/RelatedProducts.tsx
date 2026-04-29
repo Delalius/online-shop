@@ -6,13 +6,18 @@ import type { Product } from "@/shared/types/product";
 type Props = {
   products: Product[];
   reviews: ProductReview[];
+  productType: Product["productType"];
 };
 
-export const RelatedProducts = ({ products, reviews }: Props) => {
+export const RelatedProducts = ({ products, reviews, productType }: Props) => {
+  const isShampoo = productType === "shampoo";
+
   return (
     <div className="flex h-full flex-col rounded-[2rem] border border-stone-200 bg-white/90 p-6 shadow-[0_20px_80px_-45px_rgba(28,25,23,0.45)] backdrop-blur">
       <div className="flex items-center justify-between gap-3">
-        <h2 className="text-2xl font-bold text-stone-950">Related fragrances</h2>
+        <h2 className="text-2xl font-bold text-stone-950">
+          {isShampoo ? "Related shampoos" : "Related fragrances"}
+        </h2>
         <Link to="/" className="text-sm font-semibold text-amber-800 hover:text-stone-950">
           Full collection
         </Link>
@@ -55,8 +60,8 @@ export const RelatedProducts = ({ products, reviews }: Props) => {
         </div>
       ) : (
         <div className="mt-5 rounded-[1.5rem] border border-dashed border-stone-200 bg-stone-50 p-6 text-sm text-stone-500">
-          There are no related fragrances for this family yet, but the collection
-          includes other expressive compositions.
+          There are no related {isShampoo ? "shampoos" : "fragrances"} for this
+          family yet, but the collection includes other expressive formulas.
         </div>
       )}
 

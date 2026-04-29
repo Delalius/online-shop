@@ -1,6 +1,6 @@
 import { ShoppingCart, Trash2, Plus, Minus } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { useCartStore } from "@/features/cart/store";
+import { MAX_CART_QUANTITY, useCartStore } from "@/features/cart/store";
 
 const Cart = () => {
   const items = useCartStore((state) => state.items);
@@ -20,7 +20,7 @@ const Cart = () => {
             Your cart is empty
           </h2>
           <p className="mt-2 text-sm text-stone-500 sm:text-base">
-            Add a fragrance from the collection to begin your order.
+            Add a product from the collection to begin your order.
           </p>
         </div>
       </div>
@@ -33,10 +33,10 @@ const Cart = () => {
         <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-8">
           <ShoppingCart className="w-6 h-6 sm:w-8 sm:h-8 text-stone-700" />
           <h1 className="text-2xl sm:text-3xl font-bold text-stone-900">
-            Fragrance cart
+            Shopping cart
           </h1>
           <span className="ml-auto rounded-full bg-amber-800 px-2 py-1 text-xs text-white sm:px-3 sm:text-sm">
-            {items.length} {items.length === 1 ? "bottle" : "bottles"}
+            {items.length} {items.length === 1 ? "item" : "items"}
           </span>
         </div>
 
@@ -86,6 +86,7 @@ const Cart = () => {
                       <input
                         type="number"
                         min="1"
+                        max={MAX_CART_QUANTITY}
                         value={item.quantity}
                         onChange={(event) =>
                           setQuantity(item.id, Number(event.target.value))
@@ -95,7 +96,8 @@ const Cart = () => {
                       />
                       <button
                         onClick={() => increase(item.id)}
-                        className="w-7 h-7 flex items-center justify-center bg-white hover:bg-stone-100 text-stone-600 rounded-md transition-colors shadow-sm"
+                        disabled={item.quantity >= MAX_CART_QUANTITY}
+                        className="w-7 h-7 flex items-center justify-center bg-white hover:bg-stone-100 text-stone-600 rounded-md transition-colors shadow-sm disabled:cursor-not-allowed disabled:opacity-40"
                         aria-label="Increase quantity"
                       >
                         <Plus className="w-3.5 h-3.5" />
@@ -122,6 +124,7 @@ const Cart = () => {
                   <input
                     type="number"
                     min="1"
+                    max={MAX_CART_QUANTITY}
                     value={item.quantity}
                     onChange={(event) =>
                       setQuantity(item.id, Number(event.target.value))
@@ -131,7 +134,8 @@ const Cart = () => {
                   />
                   <button
                     onClick={() => increase(item.id)}
-                    className="w-8 h-8 flex items-center justify-center bg-white hover:bg-stone-100 text-stone-600 rounded-lg transition-colors shadow-sm"
+                    disabled={item.quantity >= MAX_CART_QUANTITY}
+                    className="w-8 h-8 flex items-center justify-center bg-white hover:bg-stone-100 text-stone-600 rounded-lg transition-colors shadow-sm disabled:cursor-not-allowed disabled:opacity-40"
                     aria-label="Increase quantity"
                   >
                     <Plus className="w-4 h-4" />

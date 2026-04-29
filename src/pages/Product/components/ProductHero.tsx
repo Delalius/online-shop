@@ -1,6 +1,7 @@
 import { Minus, Plus, Sparkles, Star } from "lucide-react";
 import type { Product } from "@/shared/types/product";
 import type { ProductBenefit } from "@/pages/Product/model";
+import { MAX_CART_QUANTITY } from "@/features/cart/store";
 
 type Props = {
   product: Product;
@@ -27,6 +28,8 @@ export const ProductHero = ({
   onIncrease,
   onDecrease,
 }: Props) => {
+  const isShampoo = product.productType === "shampoo";
+
   return (
     <section className="overflow-hidden rounded-[2rem] border border-stone-200 bg-white/90 shadow-[0_20px_80px_-45px_rgba(28,25,23,0.45)] backdrop-blur">
       <div className="grid gap-8 p-5 sm:p-8 xl:grid-cols-[minmax(0,1.15fr)_minmax(520px,0.85fr)] xl:items-start">
@@ -92,7 +95,9 @@ export const ProductHero = ({
           <div className="rounded-[1.75rem] border border-stone-200 bg-stone-50/80 p-5 xl:p-6">
             <div className="flex flex-wrap items-end justify-between gap-4">
               <div>
-                <p className="text-sm text-stone-500">Bottle price</p>
+                <p className="text-sm text-stone-500">
+                  {isShampoo ? "Item price" : "Bottle price"}
+                </p>
                 <p className="mt-1 text-4xl font-bold tracking-tight text-stone-950 xl:text-5xl">
                   ${product.price.toFixed(2)}
                 </p>
@@ -105,7 +110,9 @@ export const ProductHero = ({
 
             <div className="mt-5 grid gap-3 sm:grid-cols-3">
               <div className="rounded-2xl bg-white p-4 shadow-sm">
-                <p className="text-sm text-stone-500">Family</p>
+                <p className="text-sm text-stone-500">
+                  {isShampoo ? "Care type" : "Family"}
+                </p>
                 <p className="mt-1 font-semibold capitalize text-stone-950">
                   {product.category}
                 </p>
@@ -153,7 +160,8 @@ export const ProductHero = ({
                 </div>
                 <button
                   onClick={onIncrease}
-                  className="flex h-10 w-10 items-center justify-center rounded-xl text-stone-500 transition hover:bg-stone-100 hover:text-stone-950"
+                  className="flex h-10 w-10 items-center justify-center rounded-xl text-stone-500 transition hover:bg-stone-100 hover:text-stone-950 disabled:cursor-not-allowed disabled:opacity-40"
+                  disabled={currentQuantity >= MAX_CART_QUANTITY}
                   aria-label="Increase quantity"
                 >
                   <Plus className="h-4 w-4" />

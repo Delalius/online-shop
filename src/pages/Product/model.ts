@@ -1,5 +1,5 @@
 import { FlaskConical, Gift, ShieldCheck, type LucideIcon } from "lucide-react";
-import type { Product } from "@/shared/types/product";
+import type { Product, ProductType } from "@/shared/types/product";
 
 export type ProductBenefit = {
   icon: LucideIcon;
@@ -32,6 +32,14 @@ export const productBenefits: ProductBenefit[] = [
   },
 ];
 
+const productTypeLabels: Record<ProductType, string> = {
+  perfume: "Fragrance",
+  shampoo: "Shampoo",
+};
+
+export const getProductTypeLabel = (product: Product | null) =>
+  product ? productTypeLabels[product.productType] : "Product";
+
 export const getProductRating = (product: Product | null) =>
   product?.rating?.rate ?? 4.8;
 
@@ -44,6 +52,29 @@ export const getProductReviews = (product: Product | null): ProductReview[] => {
   const topNote = product.notes.top[0] ?? product.accords[0] ?? "opening";
   const heartNote = product.notes.heart[0] ?? product.accords[1] ?? "heart";
   const baseNote = product.notes.base[0] ?? product.accords[2] ?? "drydown";
+
+  if (product.productType === "shampoo") {
+    return [
+      {
+        author: "Mira K.",
+        context: "Verified purchase",
+        rating: Math.min(5, Number((baseRating + 0.1).toFixed(1))),
+        text: `${product.title} feels gentle from the first wash. The ${topNote} opening is clean, and my hair still has movement after drying.`,
+      },
+      {
+        author: "Anton R.",
+        context: product.collection,
+        rating: baseRating,
+        text: `The ${heartNote} part is what made it feel salon-level. It rinses easily and leaves the scalp comfortable, not stripped.`,
+      },
+      {
+        author: "Elena S.",
+        context: `${product.concentration}, ${product.volumeMl} ml`,
+        rating: Math.max(4.5, Number((baseRating - 0.2).toFixed(1))),
+        text: `A polished ${product.category} shampoo with a soft ${baseNote} finish. The bottle also looks good in the shower, which is a nice bonus.`,
+      },
+    ];
+  }
 
   return [
     {

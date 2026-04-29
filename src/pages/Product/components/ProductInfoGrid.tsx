@@ -1,6 +1,13 @@
 import { BadgeCheck, ShieldCheck, Truck } from "lucide-react";
+import type { Product } from "@/shared/types/product";
 
-export const ProductInfoGrid = () => {
+type Props = {
+  product: Product;
+};
+
+export const ProductInfoGrid = ({ product }: Props) => {
+  const isShampoo = product.productType === "shampoo";
+
   return (
     <div className="mt-8 grid items-stretch gap-6 xl:grid-cols-2">
       <section className="flex h-full flex-col rounded-[2rem] border border-stone-200 bg-white/90 p-6 shadow-[0_20px_80px_-45px_rgba(28,25,23,0.45)] backdrop-blur">
@@ -11,19 +18,25 @@ export const ProductInfoGrid = () => {
           <div className="h-full rounded-2xl bg-stone-50 p-4">
             <p className="text-sm text-stone-500">For whom</p>
             <p className="mt-1 font-semibold text-stone-950">
-              For a personal wardrobe, a gift, or a first niche fragrance
+              {isShampoo
+                ? "For a daily routine, a salon-style reset, or a thoughtful care gift"
+                : "For a personal wardrobe, a gift, or a first niche fragrance"}
             </p>
           </div>
           <div className="h-full rounded-2xl bg-stone-50 p-4">
             <p className="text-sm text-stone-500">Packaging</p>
             <p className="mt-1 font-semibold text-stone-950">
-              Rigid box, tissue paper, and a card with fragrance notes
+              {isShampoo
+                ? "Protective box, tissue paper, and a card with care notes"
+                : "Rigid box, tissue paper, and a card with fragrance notes"}
             </p>
           </div>
           <div className="h-full rounded-2xl bg-stone-50 p-4">
             <p className="text-sm text-stone-500">Consultation</p>
             <p className="mt-1 font-semibold text-stone-950">
-              We can suggest similar notes after your order is placed
+              {isShampoo
+                ? "We can suggest similar care formulas after your order is placed"
+                : "We can suggest similar notes after your order is placed"}
             </p>
           </div>
         </div>
@@ -57,7 +70,7 @@ export const ProductInfoGrid = () => {
             <div>
               <p className="font-semibold">14-day return</p>
               <p className="mt-1 text-sm text-slate-300">
-                If the bottle is not right, we will help arrange a return.
+                If the item is not right, we will help arrange a return.
               </p>
             </div>
           </div>
