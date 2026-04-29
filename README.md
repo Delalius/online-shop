@@ -1,13 +1,13 @@
 # Maison Éclat
 
-Maison Éclat is a luxury niche perfume boutique built with `React`, `TypeScript`, and `Vite`. The project presents a curated collection of premium fragrances with an editorial homepage, detailed perfume pages, persistent cart, and checkout flow.
+Maison Éclat is a luxury selective boutique built with `React`, `TypeScript`, and `Vite`. The project presents a curated collection of premium fragrances and elevated hair-care formulas with an editorial homepage, detailed product pages, persistent cart, and checkout flow.
 
 ## Features
 
-- Luxury perfume boutique UI with a French-inspired brand direction
-- Product cards with perfume house, collection, rating, accords, concentration, and volume
-- Search and filters by fragrance name, perfume house, family, notes, and accords
-- Product detail pages with fragrance pyramid, mood, benefits, and related fragrances
+- Luxury selective boutique UI with a French-inspired brand direction
+- Product cards with brand, collection, rating, accords, formula type, and volume
+- Search and filters by product name, brand, product type, family, notes, and accords
+- Product detail pages with scent/care profile, mood, benefits, and related products
 - Persistent cart powered by `Zustand` and `localStorage`
 - Checkout flow with delivery, payment, comments, validation, order summary, and success screen
 - Fully responsive layout styled with `Tailwind CSS`
@@ -60,15 +60,15 @@ src/
   widgets/     # reusable page sections such as filters and header
 ```
 
-## Fragrance Data
+## Product Data
 
-The boutique collection is stored locally in:
+The boutique collection of perfumes and shampoos is stored locally in:
 
 ```text
 src/shared/data/perfumes.ts
 ```
 
-The API facade in `src/shared/api/products.ts` keeps the rest of the app decoupled from the data source, so the local collection can later be replaced with a real backend without rewriting the UI.
+The API facade in `src/shared/api/products.ts` keeps the rest of the app decoupled from the data source, so the local perfume and hair-care collection can later be replaced with a real backend without rewriting the UI.
 
 ## Repository
 
