@@ -1,12 +1,12 @@
 import { Sparkles } from "lucide-react";
 import type { CSSProperties } from "react";
-import heroBackgroundUrl from "@/assets/hero1.jpg";
-import boutiqueStillLifeUrl from "@/assets/hero2.jpg";
-import ritualStillLifeUrl from "@/assets/hero3.jpg";
-import hairCareTextureUrl from "@/assets/hair1.jpg";
-import hairRitualDetailUrl from "@/assets/hair2.jpg";
-import hairCareEditorialUrl from "@/assets/hair3.jpg";
-import perfumeEditorialUrl from "@/assets/perfume.jpg";
+import heroBackgroundUrl from "@/assets/hero1.webp";
+import boutiqueStillLifeUrl from "@/assets/hero2.webp";
+import ritualStillLifeUrl from "@/assets/hero3.webp";
+import hairCareTextureUrl from "@/assets/hair1.webp";
+import hairRitualDetailUrl from "@/assets/hair2.webp";
+import hairCareEditorialUrl from "@/assets/hair3.webp";
+import perfumeEditorialUrl from "@/assets/perfume.webp";
 import { ProductList } from "@/widgets/ProductList/ProductList";
 import { boutiqueStats, perfumeProducts } from "@/shared/data/perfumes";
 
@@ -187,11 +187,11 @@ const Home = () => {
       </section>
 
       <section className="bg-stone-950 text-white">
-        <div className="h-screen overflow-y-auto scroll-smooth snap-y snap-mandatory">
+        <div className="scroll-smooth lg:h-screen lg:overflow-y-auto lg:snap-y lg:snap-mandatory">
           {brandNotes.map((item, index) => (
             <article
               key={item.title}
-              className="brand-story-section grid min-h-screen snap-start snap-always items-center gap-8 px-4 py-10 sm:px-6 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:py-14"
+              className="brand-story-section grid min-h-screen items-center gap-8 px-4 py-10 sm:px-6 lg:snap-start lg:snap-always lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:py-14"
             >
               <div className="brand-story-copy mx-auto flex w-full max-w-xl flex-col justify-between gap-8 lg:min-h-[70vh]">
                 <div>
@@ -274,11 +274,11 @@ const Home = () => {
 
                 {index === 2 && (
                   <>
-                    <div className="grid grid-cols-2 gap-4 sm:col-span-2">
+                    <div className="grid h-full min-h-0 grid-cols-1 grid-rows-2 gap-4 sm:col-span-2 sm:grid-cols-2 sm:grid-rows-1">
                       {ritualStoryImages.map((image) => (
                         <figure
                           key={image.src}
-                          className="brand-story-photo overflow-hidden rounded-3xl"
+                          className="brand-story-photo min-h-0 overflow-hidden rounded-3xl"
                         >
                           <img
                             src={image.src}

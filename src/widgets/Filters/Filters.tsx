@@ -1,26 +1,26 @@
-import type { ProductType } from "@/shared/types/product"
+import type { ProductType } from "@/shared/types/product";
 
 type Props = {
-  search: string
-  setSearch: (v: string) => void
-  productType: ProductType | 'all'
-  setProductType: (v: ProductType | 'all') => void
-  brand: string
-  setBrand: (v: string) => void
-  category: string
-  setCategory: (v: string) => void
-  sort: string
-  setSort: (v: string) => void
-  productTypes: ProductType[]
-  brands: string[]
-  categories: string[]
-  resultCount: number
-}
+  search: string;
+  setSearch: (v: string) => void;
+  productType: ProductType | "all";
+  setProductType: (v: ProductType | "all") => void;
+  brand: string;
+  setBrand: (v: string) => void;
+  category: string;
+  setCategory: (v: string) => void;
+  sort: string;
+  setSort: (v: string) => void;
+  productTypes: ProductType[];
+  brands: string[];
+  categories: string[];
+  resultCount: number;
+};
 
 const productTypeLabels: Record<ProductType, string> = {
   perfume: "Perfumes",
   shampoo: "Shampoos",
-}
+};
 
 export const Filters = ({
   search,
@@ -52,11 +52,11 @@ export const Filters = ({
         <button
           type="button"
           onClick={() => {
-            setSearch("")
-            setProductType("all")
-            setBrand("all")
-            setCategory("all")
-            setSort("default")
+            setSearch("");
+            setProductType("all");
+            setBrand("all");
+            setCategory("all");
+            setSort("default");
           }}
           className="rounded-full border border-stone-200 px-4 py-2 text-sm font-semibold text-stone-700 transition hover:border-stone-900 hover:text-stone-950"
         >
@@ -68,17 +68,19 @@ export const Filters = ({
         <input
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          placeholder="Search by note, formula, house, or product"
+          placeholder="Search by, formula, house, or product"
           className="min-h-12 rounded-xl border border-stone-200 bg-stone-50 px-4 text-sm outline-none transition focus:border-amber-700 focus:bg-white"
         />
 
         <select
           value={productType}
-          onChange={(e) => setProductType(e.target.value as ProductType | 'all')}
+          onChange={(e) =>
+            setProductType(e.target.value as ProductType | "all")
+          }
           className="min-h-12 rounded-xl border border-stone-200 bg-stone-50 px-4 text-sm outline-none transition focus:border-amber-700 focus:bg-white"
         >
           <option value="all">All products</option>
-          {productTypes.map(item => (
+          {productTypes.map((item) => (
             <option key={item} value={item}>
               {productTypeLabels[item]}
             </option>
@@ -91,7 +93,7 @@ export const Filters = ({
           className="min-h-12 rounded-xl border border-stone-200 bg-stone-50 px-4 text-sm capitalize outline-none transition focus:border-amber-700 focus:bg-white"
         >
           <option value="all">All brands</option>
-          {brands.map(item => (
+          {brands.map((item) => (
             <option key={item} value={item}>
               {item}
             </option>
@@ -104,7 +106,7 @@ export const Filters = ({
           className="min-h-12 rounded-xl border border-stone-200 bg-stone-50 px-4 text-sm capitalize outline-none transition focus:border-amber-700 focus:bg-white"
         >
           <option value="all">All families</option>
-          {categories.map(cat => (
+          {categories.map((cat) => (
             <option key={cat} value={cat}>
               {cat}
             </option>
@@ -124,5 +126,5 @@ export const Filters = ({
         </select>
       </div>
     </div>
-  )
-}
+  );
+};
